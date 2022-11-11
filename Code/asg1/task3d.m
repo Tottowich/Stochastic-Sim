@@ -1,17 +1,22 @@
 close all
 clear all
+
 mu = 800;
 N = 1000;
 p = 0.05;
 limit_check = 50000;
 lamb= 1/mu;
 g = @(x)lamb*exp(-lamb*x);
-F_inv = @(u)-(1/lamb)*log(1-u);
+G_inv = @(u)-(1/lamb)*log(1-u);
 iter = 1000;
-X = F_inv(rand(iter,N)); % Sample the value of the "gift"
+X = G_inv(rand(iter,N)); % Sample the value of the "gift"
+
 u = rand(N,1);
-n = binoinv(u,N,p); % Sample the value of
+n = binoinv(u,N,p); % Sample the value of the number
+
 Tot = n'.*mean(X);
+
+
 exceeding = zeros(size(Tot));
 exceeding(Tot>limit_check) = 1; 
 % Logical array will be binomaly distributed

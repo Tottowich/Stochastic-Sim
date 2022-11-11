@@ -11,7 +11,7 @@ w_bar = waitbar(0,'1','Name','Simulating sizes of N',...
     'CreateCancelBtn','setappdata(gcbf,''canceling'',1)');
 setappdata(w_bar,'canceling',0);
 iter = 1000;
-N_s = 1000:100:1000;
+N_s = 1000:1000:10000;
 interval_span = [];
 step = 0;
 steps = length(N_s);
@@ -26,7 +26,7 @@ for N=N_s
     n = binoinv(u,N,p); % Sample the value of
     Tot = n'.*mean(X);
     exceeding = zeros(size(Tot));
-    limit_check = mu*N*p*1.25
+    limit_check = mu*N*p*1.25;
     exceeding(Tot>limit_check) = 1; 
     % Logical array will be binomaly distributed
     p_exc = mean(exceeding);
