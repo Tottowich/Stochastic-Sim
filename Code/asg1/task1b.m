@@ -2,7 +2,7 @@
 % Task 1 b.
 % Simulate from negative binomial distribution using recurrence.
 % We use recurrence since it is r in eq (1.b.1)
-N = 1;
+N = 1000;
 X = zeros(1,N);
 R = 10;
 P = 0.5

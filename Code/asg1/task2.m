@@ -1,5 +1,6 @@
 clear all
 close all
+
 f = @(x) exp(-(1/2).*x.^2).*(1./sqrt(2*pi));
 g = @(x) (1/pi)*1./(1+x.^2);
 

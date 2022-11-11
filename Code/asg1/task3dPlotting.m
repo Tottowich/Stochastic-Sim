@@ -11,20 +11,21 @@ w_bar = waitbar(0,'1','Name','Simulating sizes of N',...
     'CreateCancelBtn','setappdata(gcbf,''canceling'',1)');
 setappdata(w_bar,'canceling',0);
 iter = 1000;
-N_s = 1000:1000:10000;
+iters = 1000:5000:100000;
 interval_span = [];
 step = 0;
-steps = length(N_s);
-for N=N_s
+steps = length(iters);
+N = 1000;
+for iter=iters
     step = step+1;
     if getappdata(w_bar,'canceling')
         break
     end
     waitbar(step/steps,w_bar,sprintf('Step: %d/%d',step,steps))
     X = F_inv(rand(iter,N)); % Sample the value of the "gift"
-    u = rand(N,1);
-    n = binoinv(u,N,p); % Sample the value of
-    Tot = n'.*mean(X);
+    u = zeros(iter,N);
+    u(rand(iter,N)<p) = 1;
+    Tot = sum(X.*u,2);
     exceeding = zeros(size(Tot));
     limit_check = mu*N*p*1.25;
     exceeding(Tot>limit_check) = 1; 
@@ -43,7 +44,7 @@ end
 delete(w_bar)
 % Plotting the interval.
 figure(1)
-plot(N_s(1:length(interval_span)),interval_span,"-*","DisplayName","Interval length")
+plot(iters(1:length(interval_span)),interval_span,"-*","DisplayName","Interval length")
 legend()
 grid on
 % Normal distribution with mu=p_exc and std=std_exc

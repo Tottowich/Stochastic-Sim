@@ -8,14 +8,22 @@ limit_check = 50000;
 lamb= 1/mu;
 g = @(x)lamb*exp(-lamb*x);
 G_inv = @(u)-(1/lamb)*log(1-u);
-iter = 1000;
+iter = 2000;
 X = G_inv(rand(iter,N)); % Sample the value of the "gift"
 
-u = rand(N,1);
-n = binoinv(u,N,p); % Sample the value of the number
 
-Tot = n'.*mean(X);
+%Tot = zeros(1,iter);
+%for i = 1:iter
+%    % Simulate Bernoulli
+%    u = zeros(1,N);
+%    u(rand(1,N)<p) = 1;
+%    Tot(i) = X(i,:)*u';
+%end
 
+u = zeros(iter,N);
+u(rand(iter,N)<p) = 1;
+Tot = X.*u;
+Tot = sum(Tot,2);
 
 exceeding = zeros(size(Tot));
 exceeding(Tot>limit_check) = 1; 
