@@ -1,17 +1,30 @@
 close all
 clear all
+
 mu = 800;
 N = 1000;
 p = 0.05;
 limit_check = 50000;
 lamb= 1/mu;
 g = @(x)lamb*exp(-lamb*x);
-F_inv = @(u)-(1/lamb)*log(1-u);
-iter = 1000;
-X = F_inv(rand(iter,N)); % Sample the value of the "gift"
-u = rand(N,1);
-n = binoinv(u,N,p); % Sample the value of
-Tot = n'.*mean(X);
+G_inv = @(u)-(1/lamb)*log(1-u);
+iter = 2000;
+X = G_inv(rand(iter,N)); % Sample the value of the "gift"
+
+
+%Tot = zeros(1,iter);
+%for i = 1:iter
+%    % Simulate Bernoulli
+%    u = zeros(1,N);
+%    u(rand(1,N)<p) = 1;
+%    Tot(i) = X(i,:)*u';
+%end
+
+u = zeros(iter,N);
+u(rand(iter,N)<p) = 1;
+Tot = X.*u;
+Tot = sum(Tot,2);
+
 exceeding = zeros(size(Tot));
 exceeding(Tot>limit_check) = 1; 
 % Logical array will be binomaly distributed
