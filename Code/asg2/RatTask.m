@@ -1,5 +1,5 @@
 %% Task1: Rat Task (Markov Chain)
-        0 1/2 0 0 0 1/2 0 0 0;
+P = [0 1/2 0 0 0 1/2 0 0 0;
         1/3 0 1/3 0 1/3 0 0 0 0;
         0 1/2 0 1/2 0 0 0 0 0;
         0 0 1/3 0 1/3 0 0 0 1/3;
@@ -11,7 +11,6 @@
     ]
 %% Rat Task A)
 counter = zeros(1,9);
-time_spent = zeros(1,9);
 N = 100000;
 p = randi(9);
 for i = 1:N
@@ -55,7 +54,9 @@ O_h = zeros(1,n);
 O_h(i) = 1; % Create a one hot encoded right hand side.
 % Then solve: pi*A= O_h
 pi_vec = O_h*inv(A) % Theoretical Distribution
-%
+
+
+
 %% Rat task C)
 N = 1000;
 counter = zeros(N,1);
