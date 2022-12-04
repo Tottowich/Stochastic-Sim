@@ -13,8 +13,9 @@ This is an illustration of the box
 
 % A partical moves inside the box as: (x(t),y(t))=(W_1(t),W_2(t)), t>=0
 % In this case we have standard BM=>sigma_1=sigma_2=1
+
 %% Task Visualization A)
-dt = 10^-5; % Specified in the assignment.
+dt = 0.0001; % Specified in the assignment.
 sigma = 1;
 W = @(p) p+sqrt(dt)*sigma*randn(size(p)); % Function to update position.
 boundaries = [-1,-1;1,1];
@@ -35,12 +36,13 @@ xlim([-1.2,1.2])
 ylim([-1.2,1.2])
 xline(boundaries(:,1),'r')
 yline(boundaries(:,1),'r')
+
 %% Task B) Monte Carlo Estimation
-dt = 10^-5; % Specified in the assignment.
+dt = 0.0001; % Specified in the assignment.
 sigma = 1;
 W = @(p) p+sqrt(dt)*sigma*randn(size(p)); % Function to update position.
 boundaries = [-1,-1;1,1];
-N=1000;
+N=10000;
 counter = zeros(N,1);
 for i=1:N
     xy = zeros(1,2); % Each simulation starts at (0,0)
@@ -51,8 +53,8 @@ for i=1:N
 end
 
 %%
-mu = mean(counter); % Expected number of steps 58333 steps.
-se = std(counter)/sqrt(N); % Standard error: 1259.5 steps.
+mu = mean(counter * dt); % Expected amount of time:
+se = std(counter * dt)/sqrt(N); % Standard error: .
 % Central Limit Theorem:
 % steps~N(mu,se^2) =>
 % steps95 = mu+-1.96*se
@@ -61,8 +63,7 @@ steps95 = [mu-1.96*se,mu+1.96*se]
 % [57310 - 62878] dt = 10^-4
 % [57719 - 62918] dt = 10^-5
 
-
-%% Task B) Monte Carlo Estimation
+%% Task C) Monte Carlo Estimation
 N = 10000;
 dt = 10^-4;
 sigs = 1:10;
@@ -80,10 +81,18 @@ for sigma = sigs
     end
 end
 %%
-mu_sigs = mean(counter); % Expected number of steps 58333 steps.
-se_sigs = std(counter)/sqrt(N);
+mu_sigs = mean(counter*dt); % Expected amount of time
+se_sigs = std(counter*dt)/sqrt(N);
 % Interesting seems to be mu_sigs/se_sigs = Const.
 se_sigs./mu_sigs
 
+hold off
+plot(sigs, mu_sigs)
+xlabel('\sigma')
+ylabel('mean')
 
+figure
+plot(log10(sigs), log10(mu_sigs))
+xlabel('log_{10}(\sigma)')
+ylabel('log_{10}(mean)')
 
