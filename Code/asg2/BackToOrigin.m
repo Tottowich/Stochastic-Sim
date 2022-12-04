@@ -62,7 +62,6 @@ steps95 = [mu-1.96*se,mu+1.96*se]
 % [57719 - 62918] dt = 10^-5
 
 
-%%
 %% Task B) Monte Carlo Estimation
 N = 10000;
 dt = 10^-4;

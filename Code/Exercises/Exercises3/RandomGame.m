@@ -8,15 +8,15 @@ function [P,E] = RandomGame(p,a,b,d)
     % Output:
     %   p: Probability of player 1 winning.
     %   E: Expected value of number of games left.
-    a = a/d;
-    b = b/d;
+    a = a./d;
+    b = b./d;
     if p==1/2
-        E = a*b;
-        P = a/(a+b);
+        E = a.*b;
+        P = a./(a+b);
     else
         q = 1-p;
-        quotient = q/p;
-        P = ((quotient^a)-1)/(quotient^(a+b)-1);
-        E = a/(q-p)-(a+b)/(q-p)*P;
+        quotient = q./p;
+        P = ((quotient.^a)-1)./(quotient.^(a+b)-1);
+        E = a./(q-p)-(a+b)./(q-p).*P;
     end
 end
