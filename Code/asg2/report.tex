@@ -1,0 +1,528 @@
+\tableofcontents
+\section*{Introduction}
+This is the lab report for \href{https://www.canvas.umu.se/courses/6705/assignments/75609}{Assignment 2} of \href{https://www.umu.se/en/education/courses/stochastic-processes-and-simulation/}{Stochastic processes and Simulations} during the autumn of 2022. The assignment consists of three different tasks regarding natural random processes. These tasks will be described in detail under each task section.
+% Describe theoretical background of the tasks 
+% Don’t forget to define all the symbols and notation used  
+% The theory should not be task specific
+
+\newpage
+\section{Task 1: White Rat}
+\label{sec:task1}
+
+\subsection{Task Description}
+\label{sec:desc1}
+A white rat is put into random cell of the maze (represented as a Markov chain in Figure \ref{fig:ratchain}) below. There are nine compartments with connections between the compartments as indicated. At each time step the rat moves through the compartments at random. That is, if there are k ways to leave a compartment, it chooses each of these with equal probability. 
+\\
+\\a) Consider long period of time (n=100 000 time steps). Use simulations to estimate the proportion of
+time spent by the rat in each cell.
+\\
+\\b) Use Matlab to compute theoretical solution of the problem. Present necessary reasoning guaranteeing existence of the solution presented.
+\\
+\\c) Assume now that a rat is places in the position 5 initially (at time 0). Based on 1000 trials, what is
+the estimate of the expected time for the rat to return to its initial position? What is the standard error associated with your point estimate?
+
+\begin{figure}[H]
+    \centering
+    \markovchain{}
+    \caption{Visualization of the Markov chain constructed from the given conditions of equal probability of leaving to each adjacent cell. The values on each outgoing edge of the graph represents the probability that the rat chooses to travel via that edge.}
+    \label{fig:ratchain}
+\end{figure}
+
+
+
+%Copy of the task description
+
+\subsection{Theory}
+\label{sec:theory1}
+\subsubsection{Markov Chains}
+\label{sec:markov1}
+\begin{definition}{(Markov Chains)}
+    A Markov Chain is a stochastic model that describes a sequence(chain) of possible events. The different events probability depend only on the previous state which can be expressed as
+\begin{equation}
+    P(X_{n+1} = j|X_n = i,X_{n−1} = i_1,...) = P(X{n+1} = j|X_n = i) = p_{ij}
+\end{equation}
+$p_{ij}$ is the probability going from i to j are called transition probabilities.
+\end{definition}
+
+\\
+\begin{figure}[H]
+    \centering
+    \triangles{}
+    \caption{Figure 1 represents a simple Markov Chain and its corresponding transition probabilities.}
+\end{figure}
+
+
+\\The probabilities can also be arranged into the following matrix:
+
+\begin{equation*}
+P = 
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1N} \\
+a_{21} & a_{22} & \cdots & a_{2N} \\
+\vdots  & \vdots  &  & \vdots  \\
+a_{N1} & a_{N2} & \cdots & a_{NN} 
+\end{bmatrix}
+\end{equation*}
+The row index corresponds to the state of chain at time n, and
+the column corresponds to the state in time n + 1. The total sum of each row has to equal to 1 since there has to be a transition.
+\begin{equation}
+    \sum_{j=1}^{N} p_{ij} = 1
+\end{equation}
+The different types of Markov Chains are Irreducible Markov Chains:
+
+\begin{definition}{(Irreducible Markov Chain)}{irreducible}
+
+The Markov Chain $X_n,n = 0,1,2,...$ with space state $\{1,2,...,N\}$
+is called irreducible if each state $j,j ∈\{1,2,...,N\}$ can be
+reached in a finite time from any other state.
+\end{definition}
+
+And Aperiodic Markov Chains:
+
+\begin{definition}{(Aperiodic Markov Chains)} 
+The Markov Chain $X_n,n = 0,1,2,...$ with space state $\{1,2,...,N\}$
+is aperiodic if for all states $j,j ∈ \{1,2,...,N\}$ there exists n such that \begin{equation}
+    P(X_n = j|X_0 = j) >0 \ and \  P(X_{n+1} = j|X_0 = j) >0
+\end{equation}
+\end{definition}
+
+\begin{theorem}
+    Let $X_n,n = 0,1,2,...$ with space state $\{1,2,...,N\}$
+\end{theorem}
+
+% Describe theoretical background of the tasks 
+% Don’t forget to define all the symbols and notation used  sied0020
+% The theory should not be task specific
+
+
+
+\subsection{Method}
+\label{sec:method1}
+
+% Here you describe how you use the theory introduced to solve the task. 
+% Define clearly relationship between your problem  and theory. This includes introducing notation and assigning it to your problem. 
+% If there is need for any analytical calculations you should present them here (calculations of theoretical task, finding constants or other parameters of your algorithm)
+
+\subsubsection{Algorithm A}
+\label{sec:alg1A}
+
+\subsubsection{Algorithm B}
+\label{sec:alg1B}
+
+\subsubsection{Algorithm C}
+\label{sec:alg1C}
+
+
+% You should describe step by step how your solution is going to proceed when implementing 
+% You can use as example the algorithms presented during the lectures 
+% If algorithm description includes symbols make sure they are  clearly defined earlier 
+% Refer to the name of a source file attached that contains implementation of the algorithm 
+% This part is of a great importance when assessing the assignment. 
+
+% If your algorithm is complicated and iterates some 
+% other algorithm, you can divide it into multiple 
+% algorithms and refer them within each other, e.g.,  
+% • Algorithm 1: Simulating trajectory of process 
+% • Algorithm 2: Estimating the quantity of interest 
+% • Algorithm 3: Constructing CI
+
+\subsection{Results}
+\label{sec:res1}
+
+% You should present the results of your simulation studies in a clear and readable way 
+% Do not copy and paste the output of your program without any comment.  
+% Use tables and figures to present multiple results in a clear way. 
+
+\subsection{Conclusions}
+\label{sec:conc1}
+
+% Reflect upon the results you have obtain.  
+% How does the results relate to the main question and formulation of the task. 
+
+\newpage
+\section{Task 2: Back to origin}
+\label{task2a}
+
+\subsection{Task Description}
+\label{sec:desc2}
+
+%Copy of the task description
+
+Consider a Brownian motion in two dimensions. This motion is named after the botanist Robert Brown,
+who first described the phenomenon, while looking through a microscope at pollen particle immersed
+in water. Mathematically, the process observed by Robert Brown can be described with help of two
+independent Brownian motions $\{ W_1 (t), t \geq 0 \}$ and $\{ W_2 (t), t \geq 0 \}$ with common parameter $\sigma$. The
+position of the pollen (particle) in Euclidean space as time progresses can be then described
+$$
+(x(t), y(t)) = (W_1 (t), W_2 (t)) , t \geq 0
+$$
+so movement in each coordinate is simply described by one dimensional Brownian motion. Observe that
+we naturally have that the motion process starts in the origin (0,0). Now, assume that we put an absorbing
+bounding box determined by $x = −1, x = 1, y = −1$ and $y = −1$ (square with edges of length $2$). When
+the process touches the boundaries it stops.
+
+\begin{itemize}
+    \item[a)] Assume that for both processes we have $\sigma = 1$. Describe the algorithm to simulate the above
+mentioned process. Plot an example of realisation of the process together with boundary. Use time
+discretisation step not bigger than $dt = 0.0001$ (you can decrease it further, depending on your
+computer capacity).
+    \item[b)] Using the result of a) construct a Monte Carlo algorithm to estimate the expected life time of such
+process (i.e., time before it hits the boundary). Provide a 95\% confidence interval for the estimate.
+Choose $dt$ and number of replicates N suitably to your computer capacity, but not bigger than
+$dt = 0.001$ and $N = 1000$, respectively.
+    \item[c)] Now consider increasing $\sigma$, i.e., increasing the volatility of the movement of the particle. Estimate the
+mean life time of such process for $\sigma = 1, 2, . . . , 10$. Again, choose $dt$ and number of replicates $N$ suitably to your computer capacity. Investigate the relationship between the two quantities graphically.
+You can plot the relationships on original and log-log scale.
+\end{itemize}
+
+\subsection{Theory}
+\label{sec:theory2}
+
+% Describe theoretical background of the tasks 
+% Don’t forget to define all the symbols and notation used  
+% The theory should not be task specific
+
+We are dealing with a particle moving in the $x$ and $y$ directions as by independent Brownian motions ($W_1$ and $W_2$). Brownian motion is defined as in Definition \ref{def:brown}.
+
+\begin{definition}{Brownian Motion}{brown}
+A stochastic process $\{ X(t), t \geq 0 \}$ is said to be a \textit{Brownian motion} if
+\begin{enumerate}
+    \item [(i)] $X(0) = 0$
+    \item [(ii)] It has independent stationary increments. (I.e. each disjoint increment of time gives an independent random variable with distribution depending only on the length of the increment). 
+    \item [(iii)] $X(t) \sim \mathcal{N}(0, \sigma ^ 2 t)$ $\forall t$ 
+\end{enumerate}
+The Brownian motion is said to be \textit{standard} if $\sigma = 1$.
+\end{definition}
+
+In order to construct an approximate Brownian motion, using increments of size $\Delta t$ we use the formula (with $W(0) = 0$):
+$$
+W(k\Delta t) = \sum_{i=1}^k X_i = W((k-1)\Delta t) + X_k$$ 
+where each $X_i \sim \mathcal{N}(0, \sigma^2\Delta t) = \sigma \sqrt{\Delta t} \mathcal \cdot  {N}(0, 1)$
+\\
+
+The information here is taken from the course \href{https://www.canvas.umu.se/courses/6705/files/1572963}{lecture notes} and \href{https://www.canvas.umu.se/courses/6705/files/1679497}{slides}.
+
+\subsubsection{Central Limit Theorem}
+\label{sec:clt}
+
+In order to get a confidence interval when using Monte Carlo methods we need to know the distribution of the sum of a large number of independent identically distributed random variables. The central limit theorem states that this sum will be normally distributed.
+
+\begin{theorem}{Central Limit Theorem}{clt}
+Let $X_1, X_2, \dots, X_N$ be independent identically distributed random variables with $E(X_i) = \mu)$ and $Var(X_i) = \sigma^2 < \infty $, $\forall i$. Then
+$$
+    \frac{ \frac{1}{N} \sum^N_{i=1} X_i - \mu } {\sigma / \sqrt{N}} \xrightarrow{D} \mathcal{N}(0,1) \;\; as \;\; N \rightarrow \infty
+$$
+\end{theorem}
+We let $\Phi$ denote the cumulative density function for the standard normal distribution, and $\Phi^{-1}$ its inverse.
+
+We also make use of rules regarding how sums and scaling of normal distributions work to construct our confidence intervals.
+\\
+
+The information here is taken from course \href{https://www.canvas.umu.se/courses/6705/files/1636770}{slides}.
+
+\subsection{Method}
+\label{sec:method2}
+
+% Here you describe how you use the theory introduced to solve the task. 
+% Define clearly relationship between your problem  and theory. This includes introducing notation and assigning it to your problem. 
+% If there is need for any analytical calculations you should present them here (calculations of theoretical task, finding constants or other parameters of your algorithm)
+
+We use Algorithm \ref{alg:brown} to update a given current position of a particle according to Brownian motion.
+
+\begin{algorithm}[H]
+    \label{alg:brown}
+    \caption{Brownian Motion update with given $\sigma$ and $\Delta t$.}
+    \KwInput{$p = (x, y)$ the current particle position}
+    \KwOutput{the next particle position}
+    \Fn{Update($p$)}{
+        $X_x \gets \mathcal{N}(0,1)$ \;
+        $X_y \gets \mathcal{N}(0,1)$ \;
+        \Return $p + \sigma \Delta t( X_x, X_y )$
+    }
+\end{algorithm}
+
+\subsubsection{Algorithm A}
+\label{sec:alg2A}
+
+In this task we let $\sigma = 1$.  We also let $dt = 0.00001$.
+
+We want to visualize a trajectory through the box with limits at $\pm 1$ in $x$ and $y$ directions. 
+
+Starting at $p = (0,0)$, we continue simulating the next step until we notice that we have reached the edge of the box, storing each position. 
+
+See Algorithm \ref{alg:2A}.
+
+\begin{algorithm}[H]
+    \label{alg:2A}
+    \caption{Visualization of Brownian motion trajectory.}
+    $p \gets (0,0)$ \;
+    $history \gets list()$ \tcp*{An empty list.}
+    \While{$p \in [0,1]^2$}{
+        history.append($p$) \tcp*{Store the position.}
+        $p \gets Update(p)$ \tcp*{See Algorithm \ref{alg:brown}.}
+    }
+    plot(history) \tcp*{Plot the trajectory}
+\end{algorithm}
+
+
+\subsubsection{Algorithm B}
+\label{sec:alg2B}
+
+We want to use a Monte Carlo algorithm to estimate the expected time until the particle reaches the boundary, and provide confidence intervals for this estimate.
+
+In this task we again let $\sigma = 1$.  We also let $dt = 0.00001$. We choose to run the Monte Carlo simulation for $N = 1000$ replications.
+
+We run $N$ iterations of the loop in Section \ref{sec:alg2A}, storing the number of steps taken for each.
+
+By the Central Limit Theorem (\ref{th:clt}) we get a way to compute the approximate distribution of the results for large $N$, and we use this to compute the confidence interval using the data we got. (Note that 95\% interval corresponds to values between $0.025$ and $0.975$ percentiles).
+
+See Algorithm \ref{alg:2B}.
+
+\begin{algorithm}[H]
+    \label{alg:2B}
+    \caption{Creation of confidence intervals over number of steps until exiting.}
+    $results \gets list()$ \tcp*{An empty list.}
+    \For{$i \in 1:N$}{
+        $count \gets 0$ \;
+        $p \gets (0,0)$ \;
+        \While{$p \in [0,1]^2$}{
+            $count \gets count + 1$ \;
+            $p \gets Update(p)$ \tcp*{See Algorithm \ref{alg:brown}.}
+        }
+        results.append($count$) \tcp*{Store the count for the replicate.}
+    }
+    $\hat{\mu} \gets \frac{1}{N}\sum^{N}_{i=1} results[i]$ \;
+    $\hat{\sigma}^2 \gets \frac{1}{N-1}\sum^{N}_{i=1} (results[i] - \hat{\mu})^2$ \;
+    $\hat{se} \gets \frac{\sqrt{\hat{\sigma}^2}}{\sqrt{N}}$ \;
+    $interval \gets (\hat{\mu} + \Phi^{-1}(0.025) \cdot \hat{se}, \; \hat{\mu} + \Phi^{-1}(0.975)\cdot\hat{se})$
+\end{algorithm}
+
+\subsubsection{Algorithm C}
+\label{sec:alg2C}
+
+% You should describe step by step how your solution is going to proceed when implementing 
+% You can use as example the algorithms presented during the lectures 
+% If algorithm description includes symbols make sure they are  clearly defined earlier 
+% Refer to the name of a source file attached that contains implementation of the algorithm 
+% This part is of a great importance when assessing the assignment. 
+
+% If your algorithm is complicated and iterates some 
+% other algorithm, you can divide it into multiple 
+% algorithms and refer them within each other, e.g.,  
+% • Algorithm 1: Simulating trajectory of process 
+% • Algorithm 2: Estimating the quantity of interest 
+% • Algorithm 3: Constructing CI
+
+We repeat the procedure from Section \ref{sec:alg2B} for each different value in $\sigma = 1, 2, \dots, 10$, we then plot the results in log-log fashion.
+
+See Algorithm \ref{alg:2C}.
+
+\begin{algorithm}[H]
+    \label{alg:2C}
+    \caption{Investigate effect of $\sigma$ on time until exit.}
+    $p \gets (0,0)$ \;
+    $results \gets list()$ \tcp*{An empty list.}
+    $sigmas \gets 1:10$
+    \For{$\sigma \in sigmas$}{
+
+        Run Algorithm \ref{alg:2B}
+        
+        results.append($\hat{\mu}$) \tcp*{Store the mean for each $\sigma$.}
+    }
+    $plot(log_{10}(sigmas),\; log_{10}(results))$
+\end{algorithm}
+
+\subsection{Results}
+\label{sec:res2}
+
+% You should present the results of your simulation studies in a clear and readable way 
+% Do not copy and paste the output of your program without any comment.  
+% Use tables and figures to present multiple results in a clear way. 
+
+The following sections contain the results for each subtask.
+
+\subsubsection{Task 2A}
+\label{sec:res2A}
+
+In Figure \ref{fig:2a} we see the Brownian motion process.
+
+The red dot indicates the starting point, the red lines the bounding box, and the blue trail the Brownian motion process steps. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{bilder/task2a.jpg}
+    \caption{Visualization of brownian motion.}
+    \label{fig:2a}
+\end{figure}
+
+\subsubsection{Task 2B}
+\label{sec:res2B}
+
+We get the following 95\% confidence interval for the time until exit: $(0.5920, \;   0.6088)$.
+
+The mean is about $0.6$.
+
+\subsubsection{Task 2C}
+\label{sec:res2C}
+
+In Figure \ref{fig:2c} we see the mean time until box being exited plotted against the size of $\sigma$. We use a log-log plot, and see that the graph forms a straight line, indicating an exponential relationship between them.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{bilder/task2c_loglog.jpg}
+    \caption{Log-log plot of mean times until exit against $\sigma$.}
+    \label{fig:2c}
+\end{figure}
+
+\subsection{Conclusions}
+\label{sec:conc2}
+
+% Reflect upon the results you have obtain.  
+% How does the results relate to the main question and formulation of the task. 
+
+We see that 
+% TODO
+
+\newpage
+\section{Task 3: Decomposition}
+\label{sec:task3}
+
+\subsection{Task Description}
+Consider a non-homogeneous Poisson process $\{N(t), t \geq 0\}$ with intensity function
+\begin{equation}
+\lambda(t) = 2 + 3\sqrt{t} + 1 , t > 0
+\end{equation}
+\label{eq:task3Intensity}
+We want to simulate the process on time interval for $t\in[0, 10]$.\\\\
+a) Decompose the process into a homogeneous and non-homogeneous Poisson process. Construct two algorithms to simulate the homogeneous and non-homogeneous component of the process, respectively.\\\\
+b) Use the results from a) to simulate trajectories of ${N(t), t \in[0, 10]}$. Plot 50 realisations of the process
+on a common plot together with the corresponding mean value function.\\\\
+c) Use 10000 simulated realisations of the process to estimate E(N(10)) and V(N(10)). Do your estimates coincide with theoretical values (reason what those are)?
+\label{sec:desc3}
+
+%C opy of the task description
+\subsection{Theory}
+\label{sec:theory3} 
+The theory used in this exercise can be found in the lecture slides regarding \href{https://www.canvas.umu.se/courses/6705/files/1700861?module_item_id=311131}{Homogeneous} (HPP) and \href{https://www.canvas.umu.se/courses/6705/files/1700861?module_item_id=311131}{Non Homogeneous Poisson} (NHPP).
+\begin{definition}{Homogeneous Poisson Process}{HPP}
+    If $N(t)$ denotes the number of events occurring on the interval of $[0,t)$ where each event take place at random. Then $N(t)$ is a homogeneous Poisson process with constant intensity $\lambda>0$ if the following criteria are satisfied.
+    \begin{enumerate}
+        \item There are no starting number of events, i.e. $N(0)=0$
+        \item The number of events on two disconnected intervals are independent.
+        \item The distribution of $N(t)$ only depends on the length of the interval meaning that when the interval occurs does not alter the distribution.
+        \item On short intervals, the probability of events is proportional to the interval length.
+        \item No two events occur on exactly the same time.
+    \end{enumerate}
+\end{definition}
+X⟩,
+\noindent
+From definition \ref{def:HPP} the following useful property can be derived
+\begin{property}{Homogeneous Poisson Process}{HPPinc}
+The number occurring events of a homogeneous Poisson process $N(t)$ with intensity $\lambda>0$ on an interval of size $t$ is Poisson distributed with intensity $\lambda t$:
+\begin{equation}
+    N(t+s)-N(s)\sim \textit{Po}(\lambda t) .
+\end{equation}
+\label{eq:HPPincDist}
+\end{property}3. The distribution of N (t) only depends on the length of the interval mean-
+ing that when the interval occurs does not alter the distribution.
+
+This is a crucial property of HPP since it relates the process into something well studied. The following properties of Poisson distributions are used in this task.
+
+\begin{properties}{Poisson Distribution}{poiss}
+Let $X$ be Poisson distributed with intensity $\lambda$ then we known:
+\begin{equation}
+    E[X] = \lambda,
+\end{equation}
+\label{eq:PoisE}
+but also that the variance can be expressed as
+\begin{equation}
+    V[X] = \lambda.
+\end{equation}
+\label{eq:PoisV}
+\end{properties}
+
+A more generalized version of HPP is the Nonhomogeneous Poisson processes which is not constrained to constant intensities with respect to time. This new process does not satisfy all criteria of definition \ref{def:HPP} or more specifically point 3 and 4 of the definition since the intensity is highly dependent on time. The nonhomogeneous process also obey a similar property as property \ref{prop:HPPinc} but modified to conform to the varying intensity over time.
+\begin{properties}{Non Homogeneous increments}{NHPPinc}
+Let $N(t)$ describe the number of events occured until time point $t$ of a non homogeneous Poisson process with intensity $\lambda(t)$. Then the expected value of $N(t)$ can be expressed by the \textbf{mean-value function} $\Lambda(t)$:
+\begin{equation}
+    E[N(t)] = \Lambda(t) =\int_0^t\lambda(\alpha)d\alpha
+\end{equation}
+\label{eq:NHPPexp}
+\noindent
+The modified version of property \ref{prop:HPPinc} for a non homogeneous Poisson process can be expressed as:
+\begin{equation}
+    N(t+s)-N(s)\sim \textit{Po}(\Lambda(t+s)-\Lambda(s))=\textit{Po}(\int_{s}^{t+s}\lambda(\alpha)d\alpha)
+\end{equation}
+\label{eq:NHPPinc}
+\end{properties}
+% Describe theoretical background of the tasks 
+% Don’t forget to define all the symbols and notation used  
+% The theory should not be task specific
+\subsection{Method}
+\label{sec:method3}
+% Here you describe how you use the theory introduced to solve the task. 
+% Define clearly relationship between your problem  and theory. This includes introducing notation and assigning it to your problem. 
+% If there is need for any analytical calculations you should present them here (calculations of theoretical task, finding constants or other parameters of your algorithm)
+
+\subsubsection{Algorithm A}
+\label{sec:alg3A}
+
+% You should describe step by step how your solution is going to proceed when implementing 
+% You can use as example the algorithms presented during the lectures 
+% If algorithm description includes symbols make sure they are  clearly defined earlier 
+% Refer to the name of a source file attached that contains implementation of the algorithm 
+% This part is of a great importance when assessing the assignment. 
+
+% If your algorithm is complicated and iterates some 
+% other algorithm, you can divide it into multiple 
+% algorithms and refer them within each other, e.g.,  
+% • Algorithm 1: Simulating trajectory of process 
+% • Algorithm 2: Estimating the quantity of interest
+% • Algorithm 3: Constructing CI
+
+\subsubsection{Algorithm B}
+\label{sec:alg3B}
+
+\subsubsection{Algorithm C}
+\label{sec:alg3C}
+\subsection{Results}
+\label{sec:res3}
+
+% You should present the results of your simulation studies in a clear and readable way 
+% Do not copy and paste the output of your program without any comment.  
+% Use tables and figures to present multiple results in a clear way. 
+
+\subsection{Conclusions}
+\label{sec:conc3}
+
+% Reflect upon the results you have obtain.  
+% How does the results relate to the main question and formulation of the task. 
+
+% =========================== APPENDIX ===========================
+\newpage
+\appendix
+
+\section{Appendix}
+\label{sec:appendix}
+\subsection{mydft.m}
+% TODO: Remove this 
+\label{a:mydft}
+\begin{lstlisting}
+function z = mydft(y)
+    % Compute the DFT of a vector y of length N
+    % z n = 1/N sum {j=0}^{N-1}y j exp(-2 pi j n/N)
+    % Matrix form is faster!
+    N = length(y);
+    j_s = 0:N-1;
+    x_js = 2*pi*j_s/N;
+    n_s = 0:N-1;
+    omega_term = exp(-1i*x_js'*n_s)
+    % An matrix of omega terms. x_js'*n_s results in NxN matrix
+    z = y*omega_term/N; % (1,N)x(N,N) => (1,N)
+    % Matrix multiplication with y results in a vector of size 1xN.
+    % Division by N gives the desired result.
+end
+\end{lstlisting}
+
+
+\clearpage
