@@ -8,7 +8,7 @@ P = [0 1/2 0 0 0 1/2 0 0 0;
         0 0 0 0 0 1/2 0 1/2 0;
         0 0 0 0 1/3 0 1/3 0 1/3;
         0 0 0 1/2 0 0 0 1/2 0;
-    ]
+    ]; % The given transition matrix
 %% Rat Task A)
 counter = zeros(1,9);
 N = 100000;
@@ -24,11 +24,11 @@ dist = counter/sum(counter)
 
 pos_vec = zeros(1,9);
 pos_vec(1) = 1;
-dist_1 = pos_vec*P^100000
+dist_1 = pos_vec*P^100000 % Test if starting in odd state
 
 pos_vec = zeros(1,9);
 pos_vec(2) = 1;
-dist_2 = pos_vec*P^100000
+dist_2 = pos_vec*P^100000 % Test if starting in odd state
 %% Rat Task B)
 
 % Calculate Steady state:
@@ -50,11 +50,10 @@ n = size(P,1);
 A = P-eye(n);
 i = 1;
 A(:,i) = 1;  % <== Substituting column
-O_h = zeros(1,n);
+O_h = zeros(n,1);
 O_h(i) = 1; % Create a one hot encoded right hand side.
 % Then solve: pi*A= O_h
-pi_vec = O_h*inv(A) % Theoretical Distribution
-
+pi_vec = A'\O_h % Theoretical Distribution
 
 
 %% Rat task C)

@@ -36,7 +36,7 @@ xlim([-1.2,1.2])
 ylim([-1.2,1.2])
 xline(boundaries(:,1),'r')
 yline(boundaries(:,1),'r')
-
+hold off
 %% Task B) Monte Carlo Estimation
 dt = 0.0001; % Specified in the assignment.
 sigma = 1;
@@ -65,7 +65,7 @@ steps95 = [mu-1.96*se,mu+1.96*se]
 
 %% Task C) Monte Carlo Estimation
 N = 10000;
-dt = 10^-4;
+dt = 10^-4; % Time Steps
 sigs = 1:10;
 counter = zeros(N,length(sigs));
 k = 0;
@@ -74,19 +74,18 @@ for sigma = sigs
     W = @(p) p+sqrt(dt)*sigma*randn(size(p));
     for i=1:N
         xy = zeros(1,2); % Each simulation starts at (0,0)
-        while all(all(abs(xy)<=abs(boundaries)))
+        while all(all(abs(xy)<=abs(boundaries))) % Check if outside any.
             xy = W(xy);
             counter(i,k)=counter(i,k)+1;
         end
     end
 end
 %%
-mu_sigs = mean(counter*dt); % Expected amount of time
+mu_sigs = mean(counter*dt); % Expected amount of time.
 se_sigs = std(counter*dt)/sqrt(N);
 % Interesting seems to be mu_sigs/se_sigs = Const.
 se_sigs./mu_sigs
 
-hold off
 plot(sigs, mu_sigs)
 xlabel('\sigma')
 ylabel('mean')
