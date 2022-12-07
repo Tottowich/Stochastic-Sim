@@ -12,14 +12,16 @@ P = [0 1/2 0 0 0 1/2 0 0 0;
 %% Rat Task A)
 counter = zeros(1,9);
 N = 100000;
-p = randi(9);
-for i = 1:N
-    pos_vec = zeros(1,9);
-    pos_vec(p) = 1;
-    counter(p) = counter(p) + 1;
-    pos_vec = pos_vec*P;
-    p = InverseTransform(pos_vec);
-end
+%for k = 1:9
+    p = 1; %k;
+    for i = 1:N
+        pos_vec = zeros(1,9);
+        pos_vec(p) = 1;
+        counter(p) = counter(p) + 1;
+        pos_vec = pos_vec*P;
+        p = InverseTransform(pos_vec);
+    end
+%end
 dist = counter/sum(counter)
 
 pos_vec = zeros(1,9);
@@ -33,9 +35,17 @@ dist_2 = pos_vec*P^100000 % Test if starting in odd state
 
 % Calculate Steady state:
 % The matrix is irridusabel and aperiodic
+% NB - not aperiodic
 
-% You can get from any cell to any and in k and k+1 steps can you go from
-% one cell to itself => There exists an asymtotic distribution.
+% You can get from any cell to any
+% True
+
+% In k and k+1 steps can you go from
+% one cell to itself
+% THIS IS FALSE
+% Only when k is even can you have gotten back (equally many steps left as
+% right, and up as down). When odd you can never have gotten to the same
+% square!
 
 % Solving this theoretically:
 
